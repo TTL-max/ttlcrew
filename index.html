@@ -9,17 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: black;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
       overflow: hidden;
-      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       color: white;
-      position: relative;
     }
 
     h1 {
@@ -27,29 +28,15 @@
       font-size: 90px;
       margin: 0;
       letter-spacing: 2px;
-      text-align: center;
       white-space: nowrap;
     }
 
     h2 {
       font-family: 'Oswald', sans-serif;
       font-size: 35px;
-      margin-top: 10px;
+      margin: 10px 0 0;
       letter-spacing: 40px;
-      text-align: center;
-      white-space: nowrap;       /* zabráni zalomeniu */
-    }
-
-    /* Responsívne zmeny na úzkych obrazovkách */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 60px;
-        letter-spacing: 1px;
-      }
-      h2 {
-        font-size: 25px;
-        letter-spacing: 20px;
-      }
+      white-space: nowrap;
     }
 
     .dollar {
@@ -57,42 +44,43 @@
       top: -200px;
       width: 150px;
       opacity: 0.95;
-      animation: fall linear infinite,
-                 spin 4s linear infinite,
-                 pulse 2s ease-in-out infinite;
+      animation:
+        fall linear infinite,
+        spin 4s linear infinite,
+        pulse 2s ease-in-out infinite;
     }
 
     @keyframes fall {
-      0%   { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
+      0%   { transform: translateY(0) rotate(0deg) scale(1); }
+      100%{ transform: translateY(100vh) rotate(360deg) scale(1); }
     }
     @keyframes spin {
       0%   { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
+      100%{ transform: rotateY(360deg); }
     }
     @keyframes pulse {
-      0%,100% { transform: scale(1) rotateY(0deg); }
-      50%     { transform: scale(1.1) rotateY(180deg); }
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.1); }
     }
   </style>
 </head>
 <body>
 
   <h1>TTL CREW</h1>
-  <h2>KOŠICE</h2>
+  <h2>K O Š I C E</h2>
 
-<script>
-  function createDollar() {
-    // dollar.src = 'https://i.imgur.com/T3sTQm7.png';
-    dollar.className = 'dollar';
-    dollar.style.left = Math.random() * window.innerWidth + 'px';
-    dollar.style.animationDuration = (Math.random() * 1.5 + 2.5) + 's';
-    document.body.appendChild(dollar);
-    setTimeout(() => dollar.remove(), 5000);
-  }
-  setInterval(createDollar, 60);
-</script>
-
+  <script>
+    function createDollar() {
+      const img = document.createElement('img');
+      img.src = 'images/dollar.png';
+      img.className = 'dollar';
+      img.style.left = Math.random() * window.innerWidth + 'px';
+      img.style.animationDuration = (Math.random() * 1.5 + 2.5) + 's';
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 5000);
+    }
+    setInterval(createDollar, 60);
+  </script>
 
 </body>
 </html>
